@@ -5,8 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
-    
+    <!-- Weather search -->
+  <nav class="navbar">
+    <div class="navbar"> Weather Dashboard </div>
+  </nav>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-3 column-1">
+            <h2 for="city">Search for a City: </h2>
+            <form>
+              <input type="text" class="search-form" id="search-form" name="city" placeholder="Name of the City">
+              <button type="submit" class="btn">Search</button>
+            </form>
+        
+            <!-- previous search -->
+            <h5>Your previous search:</h5>
+            <div id="previous-search">
+            </div>
+          </div>
+          
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.4/dayjs.min.js" integrity="sha512-XZSHSEFj4QeE0G4pwy4tToyAhF2VXoEcF9CP0t1PSZMP2XHhEEB9PjM9knsdzcEKbi6GRMazdt8tJadz0JTKIQ==" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
