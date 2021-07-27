@@ -4,39 +4,123 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+    
+    <!-- JavaScript Bundle with Popper -->  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+    crossorigin="anonymous"></script>
+    
     <title>Weather Dashboard</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous"
+    />
+    
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
+
     <!-- Weather search -->
   <nav class="navbar">
     <div class="navbar"> Weather Dashboard </div>
   </nav>
   <div class="container">
       <div class="row">
-          <div class="col-md-3 column-1">
+          <div class="col-md-3 col-1">
             <h2 for="city">Search for a City: </h2>
             <form>
               <input type="text" class="search-form" id="search-form" name="city" placeholder="Name of the City">
-              <button type="submit" class="btn">Search</button>
+              <button type="submit" class="btn" id="fetch-button"><i class="fas fa-search-plus"></i> </button>
             </form>
         
-            <!-- previous search -->
-            <h5>Your previous search:</h5>
-            <div id="previous-search">
+        <!-- previous search -->
+        <div id="previous-search"></div>
+        </div>
+
+        <!-- picked city -->
+        <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row picked">
+                  <h1 id="picked-date">Picked City (Date)</h1>
+                  <img id="">
+                </div>
+                <div class="row picked">
+                  <p id="temp">Temp</p>
+                </div>
+                <div class="row picked">
+                  <p id="hum">Humidity</p>
+                </div>
+                <div class="row picked">
+                  <p id="wind">Wind Speed</p>
+                </div>
+                <div class="row picked">
+                  <p id="uv">UV Index</p>
+                </div>
+              </div>
             </div>
-          </div>
+
+            <!-- 5-Day Forecast -->
+            <h1>5-Day Forecast</h1>
+            <div class="row">
+              <div class="col-md-2" id="day1">
+                <div id="day1-date">Day1</div>
+                <img id="day1-img">
+                <div id="day1-temp">Temp</div>
+                <div id="day1-hum">Humidity</div>
+              </div>
+              <div class="col-md-2" id="day2">
+                <div id="day2-date">Day2</div>
+                <img id="day2-img">
+                <div id="day2-temp">Temp</div>
+                <div id="day2-hum">Humidity</div>
+              </div>
+              <div class="col-md-2" id="day3">
+                <div id="day3-date">Day3</div>
+                <img id="day3-img">
+                <div id="day3-temp">Temp</div>
+                <div id="day3-hum">Humidity</div>
+              </div>
+              <div class="col-md-2" id="day4">
+                <div id="day4-date">Day4</div>
+                <img id="day4-img">
+                <div id="day4-temp">Temp</div>
+                <div id="day4-hum">Humidity</div>
+              </div>
+              <div class="col-md-2" id="day5">
+                <div id="day5-date">Day5</div>
+                <img id="day5-img">
+                <div id="day5-temp">Temp</div>
+                <div id="day5-hum">Humidity</div>
+              </div>
+            </div>
+
           
+        </div>
   </div>
-
+    
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.4/dayjs.min.js" integrity="sha512-XZSHSEFj4QeE0G4pwy4tToyAhF2VXoEcF9CP0t1PSZMP2XHhEEB9PjM9knsdzcEKbi6GRMazdt8tJadz0JTKIQ==" crossorigin="anonymous"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-</html>
 
-    <script src="./assets/js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.4/dayjs.min.js" 
+  integrity="sha512-XZSHSEFj4QeE0G4pwy4tToyAhF2VXoEcF9CP0t1PSZMP2XHhEEB9PjM9knsdzcEKbi6GRMazdt8tJadz0JTKIQ==" 
+  crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+  crossorigin="anonymous"></script>
+
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>
