@@ -10,14 +10,22 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
+//local storage
+//list of recently searched cities
+//name of the city before the date
+//fix UVIndex colors
+
 //api key = fa591f1f8cf83f15d34fef752ceddbfa;
 
 var cityList = document.querySelector("#previous-search");
-var fetchButton = document.getElementById("fetch-button");
+var fetchButton = document.getElementById("searchBtn");
 var inputValue = document.querySelector(".cityName");
+ 
 
+// var userCity = JSON.parse(localStorage.getItem("userCity")) || [];
+
+//API function
 function getApi(event) {
-  event.preventDefault();
 
   console.log(`Getting data from api for ${inputValue.value}!!!`);
   var requestUrl =
@@ -31,9 +39,9 @@ function getApi(event) {
       return response.json();
     })
     .then(function (data) {
-      var cityName = data.name;
-      $(".cityName").text(cityName);
-     
+      var cityName = $("#picked-date").text(`${data.name} (${new Date().toLocaleString()})`);
+      // $("#picked-date").text(cityName);
+      
       var latitude = data.coord.lat;
       var longtitude = data.coord.lon;
       console.log(data);
@@ -41,7 +49,6 @@ function getApi(event) {
       oneCallWeatherData(latitude, longtitude);
     });
 } //end of API function
-
 
 
 function oneCallWeatherData(latitude, longitude) {
@@ -58,12 +65,13 @@ function oneCallWeatherData(latitude, longitude) {
     .then(function (oneCallData) {
       console.log("Once call data", oneCallData);
       //adding data to html
+      
       var weatherDesc = oneCallData.current.weather[0].main;
-      $(".weather").text("Weather: " + weatherDesc);
+      $("#weather").text("Weather: " + weatherDesc);
       var weatherIcon = oneCallData.current.weather[0].icon;
       $("#weatherIcon").attr(
         "src",
-        "http://openweathermap.org/img/wn/" + weatherIcon + "@3x.png"
+        "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
       );
       $("#weatherIcon").attr("alt", "Weather Icon");
       var tempValue = oneCallData.current.temp;
@@ -75,9 +83,9 @@ function oneCallWeatherData(latitude, longitude) {
       var uvIndex = oneCallData.current.uvi;
       $("#uvIndex").text("UV Index: " + uvIndex);
       var dateValue = oneCallData.current.dt;
-      var newDate = moment.unix(dateValue).format("MM/DD/YYYY");
-      $("#picked-date").text(newDate);
-      console.log(oneCallData);
+      // var newDate = moment.unix(dateValue).format("(MM/DD/YYYY)");
+      // $("#picked-date").text(newDate);
+      // console.log(oneCallData);
     
 //       //function for setting colors of UVI
 // function uvIndexScale () {
@@ -171,6 +179,34 @@ $("#day5-hum").text("Humidity: " + humidityValue);
 }
 
 
+// //Local Storage function
+// function saveCities() {
+//   userCity.push(inputValue);
+//   localStorage.setItem("userCity", JSON.stringify(userCity));
+
+// }
+
+//local storage
+$("#searchBtn").on("click", function(){
+  var cityValue = $("#cityName").val();
+  var cityListEl = $("<li>").text(cityValue);
+  //
+  cityListEl.appendTo(".list");
+  getApi(cityValue);
+
+  console.log(cityValue);
+
+  localStorage.getItem(cityValue);
+  localStorage.setItem(cityListEl, cityValue);
+
+});
 
 
-fetchButton.addEventListener("click", getApi);
+
+// fetchButton.addEventListener("click", getApi);
+
+
+
+
+
+

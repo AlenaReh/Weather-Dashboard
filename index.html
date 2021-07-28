@@ -38,12 +38,13 @@
           <div class="col-md-3 col-1">
             <h2 for="city">Search for a City: </h2>
             <form class="input-group mb-3">
-              <input type="text" class="form-control cityName" name="city" placeholder="Name of the City">
-              <button type="submit" class="btn bg-dark text-light" id="fetch-button"><i class="fas fa-search-plus"></i> </button>
+              <input type="search" class="form-control cityName" id="cityName" placeholder="Name of the City">
+              <button id="searchBtn" class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search-plus"></i> </button>
             </form>
 
         <!-- previous search -->
-        <div id="previous-search"></div>
+        <div class="card"></div>
+          <ul class="list-group list-group-flush list" id="cityList"></ul>
         </div>
 
         <!-- picked city weather -->
@@ -105,7 +106,6 @@
               </div>
             </div>
 
-          
         </div>
   </div>
     
