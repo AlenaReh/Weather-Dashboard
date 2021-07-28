@@ -10,10 +10,8 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
-//local storage
-//list of recently searched cities
-//name of the city before the date
 //fix UVIndex colors
+//change the size of the png
 
 //api key = fa591f1f8cf83f15d34fef752ceddbfa;
 
@@ -21,8 +19,6 @@ var cityList = document.querySelector("#previous-search");
 var fetchButton = document.getElementById("searchBtn");
 var inputValue = document.querySelector(".cityName");
  
-
-// var userCity = JSON.parse(localStorage.getItem("userCity")) || [];
 
 //API function
 function getApi(event) {
@@ -40,7 +36,6 @@ function getApi(event) {
     })
     .then(function (data) {
       var cityName = $("#picked-date").text(`${data.name} (${new Date().toLocaleString()})`);
-      // $("#picked-date").text(cityName);
       
       var latitude = data.coord.lat;
       var longtitude = data.coord.lon;
@@ -82,37 +77,30 @@ function oneCallWeatherData(latitude, longitude) {
       $("#wind").text("Wind Speed: " + windValue + "mph");
       var uvIndex = oneCallData.current.uvi;
       $("#uvIndex").text("UV Index: " + uvIndex);
-      var dateValue = oneCallData.current.dt;
+      var dateValue = oneCallData.current.dt
+      
       // var newDate = moment.unix(dateValue).format("(MM/DD/YYYY)");
       // $("#picked-date").text(newDate);
       // console.log(oneCallData);
-    
-//       //function for setting colors of UVI
-// function uvIndexScale () {
-//   if (uvIndex <= 2) {
-//     uvIndex.addClass('low');
-//     uvIndex.removeClass('moderate high veryHigh extreme');
-//   }
-//   else if (uvIndex > 2 && uvIndex <=5) {
-//     uvIndex.addClass ('moderate');
-//     uvIndex.removeClass ('low high veryHigh extreme');
-//   }
-//   else if (uvIndex > 5 && uvIndex <=7) {
-//     uvIndex.addClass ('high');
-//     uvIndex.removeClass ('low moderate veryHigh extreme');
-//   }
-//   else if (uvIndex > 7 && uvIndex <=10) {
-//     uvIndex.addClass ('veryHigh');
-//     uvIndex.removeClass ('low moderate high extreme');
-//   }
-//   else if (uvIndex > 10) { 
-//     uvIndex.addClass ('extreme');
-//     uvIndex.removeClass ('low moderate high veryHigh');
-//   }
-// }
-//     uvIndexScale ();
+      
+      //setting colors according to UVIndex
 
-
+        if (uvIndex <= 2) {
+          $("#uvIndex").removeClass('moderate high veryHigh extreme').addClass('low');
+        }
+        if (uvIndex > 5) {
+          $("#uvIndex").removeClass('low high veryHigh extreme').addClass('moderate');
+        }
+        if (uvIndex > 7) {
+          $("#uvIndex").removeClass('low moderate veryHigh extreme').addClass('high');
+        }
+        if (uvIndex > 8) {
+          $("#uvIndex").removeClass('low moderate high extreme').addClass('veryHigh');
+        }
+        if (uvIndex > 10) {
+          $("#uvIndex").removeClass('low moderate high veryHigh').addClass('extreme');
+        }
+      
 
 //Displaying forecast weather 
 var day1Date = new Date(oneCallData.daily[0].dt * 1000).toLocaleDateString("en-US"); 
