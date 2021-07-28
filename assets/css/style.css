@@ -25,4 +25,19 @@ body {
    height:20px; 
    width:20px;
 } */
-  
+
+.low{
+   background-color: lightgreen;
+}
+.moderate {
+   background-color: yellow;
+}
+.high {
+   background-color: orange;
+}
+.veryHigh {
+   background-color: red;
+}
+.extreme {
+   background-color: purple;
+}

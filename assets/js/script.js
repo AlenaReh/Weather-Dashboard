@@ -16,8 +16,6 @@ var cityList = document.querySelector("#previous-search");
 var fetchButton = document.getElementById("fetch-button");
 var inputValue = document.querySelector(".cityName");
 
-
-console.log("loading JS file !!!", fetchButton);
 function getApi(event) {
   event.preventDefault();
 
@@ -43,6 +41,8 @@ function getApi(event) {
       oneCallWeatherData(latitude, longtitude);
     });
 } //end of API function
+
+
 
 function oneCallWeatherData(latitude, longitude) {
   fetch(
@@ -78,8 +78,32 @@ function oneCallWeatherData(latitude, longitude) {
       var newDate = moment.unix(dateValue).format("MM/DD/YYYY");
       $("#picked-date").text(newDate);
       console.log(oneCallData);
+    
+//       //function for setting colors of UVI
+// function uvIndexScale () {
+//   if (uvIndex <= 2) {
+//     uvIndex.addClass('low');
+//     uvIndex.removeClass('moderate high veryHigh extreme');
+//   }
+//   else if (uvIndex > 2 && uvIndex <=5) {
+//     uvIndex.addClass ('moderate');
+//     uvIndex.removeClass ('low high veryHigh extreme');
+//   }
+//   else if (uvIndex > 5 && uvIndex <=7) {
+//     uvIndex.addClass ('high');
+//     uvIndex.removeClass ('low moderate veryHigh extreme');
+//   }
+//   else if (uvIndex > 7 && uvIndex <=10) {
+//     uvIndex.addClass ('veryHigh');
+//     uvIndex.removeClass ('low moderate high extreme');
+//   }
+//   else if (uvIndex > 10) { 
+//     uvIndex.addClass ('extreme');
+//     uvIndex.removeClass ('low moderate high veryHigh');
+//   }
+// }
+//     uvIndexScale ();
 
-      //function for setting colors of UVI
 
 
 //Displaying forecast weather 
