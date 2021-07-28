@@ -10,15 +10,11 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
-//fix UVIndex colors
-//change the size of the png
-
 //api key = fa591f1f8cf83f15d34fef752ceddbfa;
 
 var cityList = document.querySelector("#previous-search");
 var fetchButton = document.getElementById("searchBtn");
 var inputValue = document.querySelector(".cityName");
- 
 
 //API function
 function getApi(event) {
@@ -44,7 +40,6 @@ function getApi(event) {
       oneCallWeatherData(latitude, longtitude);
     });
 } //end of API function
-
 
 function oneCallWeatherData(latitude, longitude) {
   fetch(
@@ -79,10 +74,6 @@ function oneCallWeatherData(latitude, longitude) {
       $("#uvIndex").text("UV Index: " + uvIndex);
       var dateValue = oneCallData.current.dt
       
-      // var newDate = moment.unix(dateValue).format("(MM/DD/YYYY)");
-      // $("#picked-date").text(newDate);
-      // console.log(oneCallData);
-      
       //setting colors according to UVIndex
 
         if (uvIndex <= 2) {
@@ -101,7 +92,6 @@ function oneCallWeatherData(latitude, longitude) {
           $("#uvIndex").removeClass('low moderate high veryHigh').addClass('extreme');
         }
       
-
 //Displaying forecast weather 
 var day1Date = new Date(oneCallData.daily[0].dt * 1000).toLocaleDateString("en-US"); 
 $('#day1-date').text(day1Date);
@@ -166,32 +156,19 @@ $("#day5-hum").text("Humidity: " + humidityValue);
     });
 }
 
-
-// //Local Storage function
-// function saveCities() {
-//   userCity.push(inputValue);
-//   localStorage.setItem("userCity", JSON.stringify(userCity));
-
-// }
-
 //local storage
 $("#searchBtn").on("click", function(){
   var cityValue = $("#cityName").val();
   var cityListEl = $("<li>").text(cityValue);
-  //
+
   cityListEl.appendTo(".list");
   getApi(cityValue);
 
-  console.log(cityValue);
+  // console.log(cityValue);
 
   localStorage.getItem(cityValue);
   localStorage.setItem(cityListEl, cityValue);
-
 });
-
-
-
-// fetchButton.addEventListener("click", getApi);
 
 
 
