@@ -17,12 +17,12 @@ var fetchButton = document.getElementById("searchBtn");
 var inputValue = document.querySelector(".cityName");
 
 //API function
-function getApi(event) {
+function getApi(city) {
 
-  console.log(`Getting data from api for ${inputValue.value}!!!`);
+  // console.log(`Getting data from api for ${inputValue.value}!!!`);
   var requestUrl =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
-    inputValue.value +
+    city +
     "&units=imperial&id=524901&appid=fa591f1f8cf83f15d34fef752ceddbfa";
   console.log(requestUrl);
 
@@ -35,7 +35,7 @@ function getApi(event) {
       
       var latitude = data.coord.lat;
       var longtitude = data.coord.lon;
-      console.log(data);
+      // console.log(data);
 
       oneCallWeatherData(latitude, longtitude);
     });
@@ -53,9 +53,9 @@ function oneCallWeatherData(latitude, longitude) {
       return response.json();
     })
     .then(function (oneCallData) {
-      console.log("Once call data", oneCallData);
+      // console.log("Once call data", oneCallData);
       //adding data to html
-      
+
       var weatherDesc = oneCallData.current.weather[0].main;
       $("#weather").text("Weather: " + weatherDesc);
       var weatherIcon = oneCallData.current.weather[0].icon;
@@ -75,7 +75,6 @@ function oneCallWeatherData(latitude, longitude) {
       var dateValue = oneCallData.current.dt
       
       //setting colors according to UVIndex
-
         if (uvIndex <= 2) {
           $("#uvIndex").removeClass('moderate high veryHigh extreme').addClass('low');
         }
@@ -159,8 +158,9 @@ $("#day5-hum").text("Humidity: " + humidityValue);
 //local storage
 $("#searchBtn").on("click", function(){
   var cityValue = $("#cityName").val();
-  var cityListEl = $("<li>").text(cityValue);
-
+  var cityListEl = $("<li>").attr("data-city", cityValue).text(cityValue);
+  // cityListEl.setAttribute("data-city", cityValue);
+  //
   cityListEl.appendTo(".list");
   getApi(cityValue);
 
@@ -168,7 +168,18 @@ $("#searchBtn").on("click", function(){
 
   localStorage.getItem(cityValue);
   localStorage.setItem(cityListEl, cityValue);
+  document.getElementById('cityName').value = "";
+
 });
+
+//clickable cities
+$(".list").on('click', function(event) {
+  console.log(event.target.getAttribute('data-city'));
+  var citySearch = event.target;
+  var search = citySearch.getAttribute('data-city');
+  getApi(search);
+
+})
 
 
 
