@@ -21,9 +21,7 @@ function getApi(city) {
 
   // console.log(`Getting data from api for ${inputValue.value}!!!`);
   var requestUrl =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
-    city +
-    "&units=imperial&id=524901&appid=fa591f1f8cf83f15d34fef752ceddbfa";
+    "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&id=524901&appid=fa591f1f8cf83f15d34fef752ceddbfa";
   console.log(requestUrl);
 
   fetch(requestUrl)
@@ -43,11 +41,7 @@ function getApi(city) {
 
 function oneCallWeatherData(latitude, longitude) {
   fetch(
-    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-      latitude +
-      "&lon=" +
-      longitude +
-      "&units=imperial&id=524901&appid=fa591f1f8cf83f15d34fef752ceddbfa"
+    "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&units=imperial&id=524901&appid=fa591f1f8cf83f15d34fef752ceddbfa"
   )
     .then(function (response) {
       return response.json();
@@ -61,7 +55,7 @@ function oneCallWeatherData(latitude, longitude) {
       var weatherIcon = oneCallData.current.weather[0].icon;
       $("#weatherIcon").attr(
         "src",
-        "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+        "https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
       );
       $("#weatherIcon").attr("alt", "Weather Icon");
       var tempValue = oneCallData.current.temp;
@@ -97,7 +91,7 @@ $('#day1-date').text(day1Date);
 var weatherIcon = oneCallData.daily[0].weather[0].icon;
 $("#day1-img").attr(
   "src",
-  "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+  "https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
 );
 var tempValue = oneCallData.daily[0].temp.max;
 $("#day1-temp").text("Temperature: " + tempValue);
@@ -109,7 +103,7 @@ $('#day2-date').text(day2Date);
 var weatherIcon = oneCallData.daily[1].weather[0].icon;
 $("#day2-img").attr(
   "src",
-  "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+  "https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
 );
 var tempValue = oneCallData.daily[1].temp.max;
 $("#day2-temp").text("Temperature: " + tempValue);
@@ -121,7 +115,7 @@ $('#day3-date').text(day3Date);
 var weatherIcon = oneCallData.daily[2].weather[0].icon;
 $("#day3-img").attr(
   "src",
-  "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+  "https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
 );
 var tempValue = oneCallData.daily[2].temp.max;
 $("#day3-temp").text("Temperature: " + tempValue);
@@ -133,7 +127,7 @@ $('#day4-date').text(day4Date);
 var weatherIcon = oneCallData.daily[3].weather[0].icon;
 $("#day4-img").attr(
   "src",
-  "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+  "https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
 );
 var tempValue = oneCallData.daily[3].temp.max;
 $("#day4-temp").text("Temperature: " + tempValue);
@@ -145,13 +139,12 @@ $('#day5-date').text(day5Date);
 var weatherIcon = oneCallData.daily[4].weather[0].icon;
 $("#day5-img").attr(
   "src",
-  "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+  "https://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
 );
 var tempValue = oneCallData.daily[4].temp.max;
 $("#day5-temp").text("Temperature: " + tempValue);
 var humidityValue = oneCallData.daily[4].humidity;
 $("#day5-hum").text("Humidity: " + humidityValue);
-
     });
 }
 
@@ -169,7 +162,6 @@ $("#searchBtn").on("click", function(){
   localStorage.getItem(cityValue);
   localStorage.setItem(cityListEl, cityValue);
   document.getElementById('cityName').value = "";
-
 });
 
 //clickable cities
@@ -178,7 +170,6 @@ $(".list").on('click', function(event) {
   var citySearch = event.target;
   var search = citySearch.getAttribute('data-city');
   getApi(search);
-
 })
 
 
