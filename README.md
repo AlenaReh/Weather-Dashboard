@@ -7,7 +7,7 @@ We use the OpenWeather API to retrieve weather data for different cities. The da
 
 ## Demo
 
-![demo](Weather-Dashboard/assets/images/demo.png)
+![demo](assets/images/demo.png)
 
 This application can be found here:
 * https://alenareh.github.io/Weather-Dashboard/
